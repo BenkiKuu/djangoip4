@@ -3,6 +3,13 @@ from django import forms
 
 
 
+class NewAllertForm(forms.ModelForm):
+    class Meta:
+        model = NeighbourHood
+        exclude = ['editor', 'pub_date']
+        widgets = {
+            # 'tags': forms.CheckboxSelectMultiple(),
+        }
 
 
 class NewProfileForm(forms.ModelForm):
