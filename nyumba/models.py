@@ -11,3 +11,11 @@ class NeighbourHood(models.Model):
     neighbourhoo_location = CharField(max_length =250)
     ocupants_count = models.IntergerField()
     admin = models.ForeignKey(User)
+
+
+class Profile(models.Model):
+    profile_photo = models.ImageField(upload_to='images/')
+    bio = models.CharField(max_length=300)
+    user = models.OneToOneField(User)
+    location = models.ForeignKey(NeighbourHood, null=True)
+    email = models.EmailField((null = True)
