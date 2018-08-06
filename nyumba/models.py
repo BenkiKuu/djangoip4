@@ -26,3 +26,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     location = models.ForeignKey(NeighbourHood, null=True)
     email = models.EmailField((null = True)
+
+class Business(models.Model):
+    business_logo = models.ImageField(upload_to='images/')
+    business_moto = models.CharField(max_length=300)
+    user = models.OneToOneField(User)
+    location = models.ForeignKey(NeighbourHood, null=True)
+    email = models.EmailField(null = True)
