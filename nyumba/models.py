@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 import datetime as dt
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -24,8 +26,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 class NeighbourHood(models.Model):
     neighbourhood_name = models.CharField(max_length =60)
-    neighbourhoo_location = CharField(max_length =250)
-    ocupants_count = models.IntergerField()
+    neighbourhoo_location = models.CharField(max_length =250)
+    # ocupants_count = models.IntergerField()
     admin = models.ForeignKey(User)
 
 
@@ -34,7 +36,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=300)
     user = models.OneToOneField(User)
     location = models.ForeignKey(NeighbourHood, null=True)
-    email = models.EmailField((null = True)
+    email = models.EmailField(null = True)
 
 class Business(models.Model):
     business_logo = models.ImageField(upload_to='images/')
