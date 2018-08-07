@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns=[
     url('^$', views.neighbourhood,name = 'home'),
-
+    
 ]

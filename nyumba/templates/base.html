@@ -39,15 +39,15 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="logo1" src="{% static 'img/logo1.png' %}" alt=""></a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{%url 'newsToday'%}">Home</a>
+                <a class="dropdown-item" href="#">Home</a>
                 <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="{%url 'new_article'%}">Post an Allert</a>
+            <a class="dropdown-item" href="#">Post an Allert</a>
               <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="/accounts/password/change">Change Password</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <a class="dropdown-item" href="#">Profile</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/logout">Logout</a>
             </div>
@@ -64,7 +64,7 @@
 
             {% endif %}
             <form class="form-inline my-2 my-lg-0" action="/">
-              <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search for Pics" aria-label="Search">
+              <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search for a Neighborhood" aria-label="Search">
               <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
 
