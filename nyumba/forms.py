@@ -16,3 +16,8 @@ class NewProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
+
+class CreateHoodForm(forms.ModelForm):
+    class Meta:
+        name = NeighbourHood
+        exclude = ['admin',]
