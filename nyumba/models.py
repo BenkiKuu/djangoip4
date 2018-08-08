@@ -88,3 +88,33 @@ class JoinHood(models.Model):
 
    def __str__(self):
        return self.user_id
+
+class Allert(models.Model):
+    title = models.CharField(max_length=300)
+    body = models.TextField()
+    user = models.ForeignKey(User)
+    hood = models.ForeignKey(NeighbourHood)
+
+    def __str__(self):
+        return self.title
+
+    def save_allert(self):
+        self.save()
+
+    def delete_allert(self):
+        self.delete()
+
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=500)
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Allert)
+
+    def __str__(self):
+        return self.comment
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
