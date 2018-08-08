@@ -1,5 +1,7 @@
 #regform {
   margin-top: 100px;
+  background-color: rgb(74, 35, 90, 0.5);
+  background-image: url('../img/backgroundimg.svg');
 }
 
 .form-text{
@@ -8,4 +10,19 @@
 
 #loginform {
   margin-top: 100px;
+  background-color: rgb(74, 35, 90, 0.5);
+  background-image: url('../img/backgroundimg.svg');
+}
+
+
+.form-text{
+  display: none;
+}
+
+#loginform {
+  margin-top: 100px;
+}
+
+ body {
+  background-color: rgb(93, 173, 226, 0.5);
 }
