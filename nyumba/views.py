@@ -43,8 +43,59 @@ def join_hood(request, hoodId):
     return redirect('index')
 
 @login_required(login_url='/accounts/login/')
-def exit_hood(request,hoodId):
+def exithood(request,hoodId):
 
 	if JoinHood.objects.filter(user_id = request.user).exists():
 	       JoinHood.objects.get(user_id = request.user).delete()
-	return redirect('index')
+		return redirect('index')
+
+@login_required(login_url='/accounts/login/')
+def create_business(request):
+
+    if JoinHood.objects.filter(user_id = request.user).exists():
+        if request.method == 'POST':
+            form = CreateBusinessForm(request.POST)
+            if form.is_valid():
+                business = form.save(commit=False)
+                business.user = request.user
+                business.location = request.user.join.hood_id
+                business.save()
+                return redirect('index')
+        else:
+            form = CreateBusinessForm()
+            return render(request, 'create_business.html', locals())
+
+
+@login_required(login_url='/accounts/login/')
+def post_allert(request):
+
+    if JoinHood.objects.filter(user_id = request.user).exists():
+        if request.method == 'POST':
+            form = CreateAllertForm(request.POST)
+            if form.is_valid():
+                allert = form.save(commit=False)
+                allert.user = request.user
+                allert.hood = request.user.join.hood_id
+                allert.save()
+                return redirect('index')
+        else:
+            form = CreatePostForm()
+            return render(request, 'create_allert.html', locals())
+
+
+@login_required(login_url='/accounts/login/')
+def create_comment(request, post_id):
+
+    if Join.objects.filter(user_id = request.user).exists():
+        post = Post.objects.get(id = post_id)
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.user = request.user
+                comment.post = post
+                comment.save()
+                return redirect('index')
+        else:
+            form = CommentForm()
+            return render(request, 'create_comment.html', locals())
