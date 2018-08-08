@@ -1,4 +1,4 @@
-from .models import NeighbourHood, Profile, Business
+from .models import NeighbourHood, Profile, Business, Allert, Comment
 from django import forms
 
 
@@ -29,7 +29,7 @@ class CreateBusinessForm(forms.ModelForm):
         model = Business
         exclude = ['location',]
 
-class CreateallertForm(forms.ModelForm):
+class CreateAllertForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['user','post']

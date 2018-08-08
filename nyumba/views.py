@@ -1,4 +1,4 @@
-from . models import NeighbourHood, Profile, Business
+from . models import NeighbourHood, Profile, Business, JoinHood, Allert, Comment
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -9,18 +9,18 @@ def neighbourhood(request):
     if request.user.is_authenticated:
         if Join.objects.filter(user_id=request.user).exists():
             hood = Neighbourhood.objects.get(pk=request.user.join.hood_id.id)
-
-            return render(request, 'hood/myhood.html', {"hood":hood, "posts":posts, "business":business, "comments":comments})
+            allert = Allert.objects.filter(hood = request.user.join.hood_id.id)
+            business = Business.objects.filter(hood = request.user.join.hood_id.id)
+            comments = Comment.objects.all()
+            return render(request, 'myhood.html', locals())
         else:
-            neighbourhoods = Neighbourhood.objects.all()
+            neighbourhoods = NeighbourHood.objects.all()
             return render(request, 'index.html', locals())
 
 
 @login_required(login_url='/accounts/login/')
 def create_hood(request):
-    """
-    View to create an instance of a neighbourhood
-    """
+
     if request.method == 'POST':
         form = CreateHoodForm(request.POST)
         if form.is_valid():
@@ -30,4 +30,21 @@ def create_hood(request):
             return redirect('index')
     else:
         form = CreateHoodForm()
-        return render(request, 'hood/create_hood.html', locals())
+        return render(request, 'create_hood.html', locals())
+
+@login_required(login_url='/accounts/login/')
+def join_hood(request, hoodId):
+
+    neighbourhood = Neighbourhood.objects.get(pk=hoodId)
+    if JoinHood.objects.filter(user_id=request.user).exists():
+        JoinHood.objects.filter(user_id=request.user).update(hood_id=neighbourhood)
+    else:
+        join_hood(user_id=request.user, hood_id=neighbourhood).save()
+    return redirect('index')
+
+@login_required(login_url='/accounts/login/')
+def exit_hood(request,hoodId):
+
+	if JoinHood.objects.filter(user_id = request.user).exists():
+	       JoinHood.objects.get(user_id = request.user).delete()
+	return redirect('index')
