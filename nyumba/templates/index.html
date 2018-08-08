@@ -2,10 +2,41 @@
 {% load static %}
 {% block content %}
 {{ block.super}}
-<div class="container-fluid">
+
+<div class="container">
+  <br>
+  <h4>Welcome to Nyumbakumi Watch. Start by joining a hood or if your neighbourhood doesn't yet exist, create one <a href="{% url 'new_neighbourhood' %}">here</a>.</h4>
+  <br>
+  <hr>
+  <div class="row">
+    {% for hood in neighbourhoods %}
+    <div class="col-md-3" style="margin: 20px">
+      <div class="card">
+        <div class="card-header">
+          <h4>{{hood.name.capitalize}}</h4>
+        </div>
+        <div class="card-body">
+          <p>{{hood.description.capitalize}}</p>
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'join_hood' hood.id %}" class="btn btn-sm btn-primary">Join hood</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+<!-- <div class="container-fluid">
     <div class="row">
         <div class="col-md-1.5"></div>
-    {% for neighbourhood in neighbourhoods %}
+    #{ % for neighbourhood in neighbourhoods % }#
        <div class="col-md-3">
              <div class="card">
                 <img class="img-responsive" src="{{neighbourhood.neighbourhood_photo.url}}" alt="image" data-toggle="modal" data-target="#{{neighbourhood.id}}">
@@ -22,7 +53,7 @@
 
 
            {% for neighbourhood in neighbourhoods %}
-              <!-- Modal -->
+
               <div class="modal fade my_modal" id="{{neighbourhood.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -52,9 +83,7 @@
               </div>
             {% endfor %}
     </div>
-  {% endfor %}
 
         <div class="col-md-1.5"></div>
     </div>
-</div>
-{% endblock %}
+</div> -->

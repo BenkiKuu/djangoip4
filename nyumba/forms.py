@@ -19,7 +19,7 @@ class NewProfileForm(forms.ModelForm):
 
 class CreateHoodForm(forms.ModelForm):
     class Meta:
-        name = NeighbourHood
+        model = NeighbourHood
         exclude = ['admin',]
 
 
@@ -31,8 +31,8 @@ class CreateBusinessForm(forms.ModelForm):
 
 class CreateAllertForm(forms.ModelForm):
     class Meta:
-        model = Post
-        exclude = ['user','post']
+        model = Allert
+        exclude = ['user','hood']
 
 class CommentForm(forms.ModelForm):
     class Meta:

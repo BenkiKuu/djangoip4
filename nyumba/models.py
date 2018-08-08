@@ -26,7 +26,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 class NeighbourHood(models.Model):
     neighbourhood_name = models.CharField(max_length =60)
-    neighbourhoo_location = models.CharField(max_length =250)
+    neighbourhood_location = models.CharField(max_length =250)
     population_count = models.IntegerField(null=True)
     admin = models.ForeignKey(User)
 
@@ -65,7 +65,7 @@ class Business(models.Model):
     business_logo = models.ImageField(upload_to='images/')
     business_moto = models.CharField(max_length=300)
     user = models.OneToOneField(User)
-    location = models.ForeignKey(NeighbourHood, null=True)
+    hood = models.ForeignKey(NeighbourHood, null=True)
     email = models.EmailField(null = True)
 
     def __str__(self):
