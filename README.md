@@ -93,7 +93,7 @@ Please read this [comprehensive guide](https://opensource.guide/how-to-contribut
 Create an issue mentioning the bug you have found
 
 #### Known bugs
- - the app is in the alpha phase, and some styling still needs to be improved
+ - the app is glitchy dislaying comments and registered businesses
 
 
 
