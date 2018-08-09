@@ -1,7 +1,21 @@
-{%load bootstrap4 %}
+{% extends 'forms/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
 
-<form  action="{% url 'new_neighbourhood' %}" method="post" enctype="multipart/form-data">
+<h3 class="text-center">Create Neighbourhood</h3>
+<div class="container" >
+ <div class="row">
+   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+       <div class="jumbotron"id="createbform">
+         <form  action="{% url 'create_business' %}" method="post" enctype="multipart/form-data">
          {%csrf_token%}
-         {% bootstrap_form form %}
-         <input type="submit" class="btn btn-primary" value="Create">
+         {% bootstrap_form form%}
+         <input type="submit" class="btn btn-outline-primary" value="Create">
        </form>
+       </div>
+     </div>
+     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+   </div>
+ </div>
+{% endblock %}

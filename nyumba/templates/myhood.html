@@ -1,0 +1,79 @@
+{%extends 'base.html'%}
+{%load bootstrap4 %}
+{% block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+			<br>
+			<h2><strong>{{hood.name.capitalize}}</strong></h2>
+			<h4>County: <strong>{{hood.location.capitalize}}</strong></h4>
+			<h4>Hood Population : <strong>{{hood.population}}</strong></h4>
+			<h4>{{hood.bio}}</h4>
+			<a class="btn btn-sm btn-outline-success" href="{% url 'create_allert' %}">Post Allert</a>
+			<a class="btn btn-sm btn-outline-primary" href="{% url 'create_business' %}">Create Business</a>
+			<a class="btn btn-sm btn-outline-danger" href="{% url 'exithood' hood.id %}">Exit Neighbourhood</a>
+		</div>
+	</div>
+</div>
+<br>
+<div class="container">
+	<div class="row">
+	<div class="col-md-12"></div>
+	<div class="col-md-12">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle "tab" class="btn btn-sm btn-outline-primary" href="#forum">Forum</a></li>
+			<li><a data-toggle "tab" class="btn btn-sm btn-outline-primary" href="#business">Businesses</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="forum" class="tab-pane fade in active">
+				<br><h4 class="text-center">Posts</h4>
+				{%if posts%}
+				{% for post in posts %}
+				<div class="card" style="margin:10px;">
+					<div class="card-body">
+						<p>Post title: {{post.title.capitalize}}</p>
+						<p>{{post.body}}</p>
+					</div>
+					<div class="card-footer">
+						<a href="{% url 'create_comment' post_id=post.id %}">Add comment</a>
+						<hr>
+						{% for comment in comments %}
+						{% if comment.post_id == post.id %}
+						<p>{{comment.comment}}<p>
+						{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				{% endfor %}
+				{% else %}
+				 <a class="btn btn-sm btn-outline-primary" href="{% url 'create_allert' %}">Create Post</a></p>
+				{% endif %}
+			</div>
+
+
+			<div id="business" class="tab-pane fade">
+				<br>
+				<div class="jumbotron">
+					{% if business %}
+					<ol>
+						{% for biz in business %}
+						<li>
+							<h5>{{biz.name.capitalize}}</h5>
+							<p>{{biz.bio.capitalize}}</p>
+							<p class="text-muted">contact us at {{biz.email_address}}</p>
+						</li>
+						{%endfor%}
+						{% else %}
+						<a class="btn btn-sm btn-outline-primary" href="{% url 'create_business' %}">Register Busines</a>
+					</ol>
+					{% endif %}
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

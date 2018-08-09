@@ -3,9 +3,9 @@
 {% block content %}
 {{ block.super}}
 
-<div class="container">
+<div class="container" id="hompg">
   <br>
-  <h4>Welcome to Nyumbakumi Watch. Start by joining a hood or if your neighbourhood doesn't yet exist, create one <a href="{% url 'new_neighbourhood' %}">here</a>.</h4>
+   <a href="{% url 'new_neighbourhood' %}" class="btn btn-sm btn-outline-primary">Add a Neighbourhood</a>
   <br>
   <hr>
   <div class="row">
@@ -13,13 +13,13 @@
     <div class="col-md-3" style="margin: 20px">
       <div class="card">
         <div class="card-header">
-          <h4>{{hood.name.capitalize}}</h4>
+          <h4>{{hood.neighbourhood_name.capitalize}}</h4>
         </div>
         <div class="card-body">
-          <p>{{hood.description.capitalize}}</p>
+          <p>{{hood.neighbourhood_location.capitalize}}</p>
         </div>
         <div class="card-footer">
-          <a href="{% url 'join_hood' hood.id %}" class="btn btn-sm btn-primary">Join hood</a>
+          <a href="{% url 'join_hood' hood.id %}" class="btn btn-sm btn-outline-primary">Join This Neighbourhood</a>
       </div>
     </div>
   </div>

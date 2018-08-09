@@ -49,11 +49,10 @@ def exithood(request,hoodId):
 
 	if JoinHood.objects.filter(user_id = request.user).exists():
 	       JoinHood.objects.get(user_id = request.user).delete()
-	return redirect('index')
+	return redirect('home')
 
 @login_required(login_url='/accounts/login/')
 def create_business(request):
-
     if JoinHood.objects.filter(user_id = request.user).exists():
         if request.method == 'POST':
             form = CreateBusinessForm(request.POST)
@@ -62,10 +61,10 @@ def create_business(request):
                 business.user = request.user
                 business.location = request.user.join.hood_id
                 business.save()
-                return redirect('index')
+            return redirect('home')
         else:
             form = CreateBusinessForm()
-            return render(request, 'create_business.html', locals())
+            return render(request, 'forms/create_business.html', locals())
 
 
 @login_required(login_url='/accounts/login/')
@@ -81,8 +80,8 @@ def post_allert(request):
                 allert.save()
                 return redirect('index')
         else:
-            form = CreatePostForm()
-            return render(request, 'create_allert.html', locals())
+            form = CreateAllertForm()
+            return render(request, 'forms/create_allert.html', locals())
 
 
 @login_required(login_url='/accounts/login/')
@@ -100,4 +99,4 @@ def create_comment(request, post_id):
                 return redirect('index')
         else:
             form = CommentForm()
-            return render(request, 'create_comment.html', locals())
+            return render(request, 'forms/create_comment.html', locals())

@@ -31,7 +31,7 @@ class NeighbourHood(models.Model):
     admin = models.ForeignKey(User)
 
     def __str__(self):
-        return self.name
+        return self.neighbourhood_name
 
     def save_neighbourhood(self):
         self.save()
@@ -52,7 +52,7 @@ class Profile(models.Model):
     email = models.EmailField(null = True)
 
     def __str__(self):
-        return self.name
+        return self.email
 
     def save_profile(self):
         self.save()
@@ -69,7 +69,7 @@ class Business(models.Model):
     email = models.EmailField(null = True)
 
     def __str__(self):
-        return self.name
+        return self.email
 
     def save_business(self):
         self.save()
